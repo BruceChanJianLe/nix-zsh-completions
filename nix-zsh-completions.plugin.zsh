@@ -29,3 +29,9 @@ function prompt_nix_shell_setup {
 # Add this to your zshrc if you want the prompt prefixed with `[nix-shell]`
 # when you're in a nix-shell environment.
 # prompt_nix_shell_setup "$@"
+NIX_ZSH_COMPLETION_HOME="${0:A:h}"
+
+if (( ! $fpath[(I)$NIX_ZSH_COMPLETION_HOME] )); then
+  fpath+=($NIX_ZSH_COMPLETION_HOME)
+  autoload -U compinit && compinit
+fi
